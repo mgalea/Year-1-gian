@@ -12,9 +12,10 @@
 #define COLUMNS 10
 #define AREA (ROWS*COLUMNS)
 
-#define WORDSTOCHOOSE 4
+#define WORDSTOCHOOSE 10
 
 #define MAXITERATIONS 50 // affects the chance of not finding a valid pos'n for a word
+
 
 //Functions:
 
@@ -26,7 +27,7 @@ extern void createBlankPuzzle();
 
 
 // Escape Codes:
-#define HIGHLIGHT  "\x1b[7m" // black foreground & white background
+#define HIGHLIGHT  "\x1b[7m"
 #define REDBACK    "\x1b[41m"
 #define GRNBACK    "\x1b[42m"
 #define REDFORE    "\x1b[31m"
