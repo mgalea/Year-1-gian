@@ -16,3 +16,24 @@
 
 #define MAXITERATIONS 50 // affects the chance of not finding a valid pos'n for a word
 
+//Functions:
+
+extern void displayWordBank();
+extern void displayPuzzle();
+extern void fillPuzzleWithWords();
+extern void fillRandom();
+extern void createBlankPuzzle();
+
+
+// Escape Codes:
+#define HIGHLIGHT  "\x1b[7m" // black foreground & white background
+#define REDBACK    "\x1b[41m"
+#define GRNBACK    "\x1b[42m"
+#define REDFORE    "\x1b[31m"
+#define GRNFORE    "\x1b[32m"
+#define RESET      "\x1b[0m"
+#define CURSORPOS  "\x1b[%i;%iH"
+#define CURSORHOME "\x1b[H"
+
+
+

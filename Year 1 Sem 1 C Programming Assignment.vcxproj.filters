@@ -24,6 +24,9 @@
     <ClCompile Include="Word Bank.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Game Logic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Definitions.h">

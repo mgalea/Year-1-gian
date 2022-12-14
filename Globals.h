@@ -1,5 +1,10 @@
 #include "Definitions.h"
 
+void setCursorPos(int x, int y) {
+    printf(CURSORHOME);
+    printf(CURSORPOS, y, x);
+}
+
 char puzzle[ROWS][COLUMNS];
 
 char dictionary[][10] = { "GIRL" , "BOY" , "SHIP" , "CAT" , "FOG" , "KITE" , "BAG" , "STAMP" , "ZOOM" , "JOY", "CAR" , "BUS" , "VAN" , "BOAT" , "BIKE" , "TURBO" , "SCHOOL" , "COVID" , "VIRUS" , "STAR" };
