@@ -48,6 +48,16 @@ int main(void)
     displayPuzzle();
     displayWordBank();
 
+    // main gameplay loop:
+    printf("\n\nEnter Coordinates:    \n(e.g A1 D4)");
+
+    while (wordBankSize) {
+        setCursorPos(ansField);
+        printf("%*c", 20);
+        setCursorPos(ansField);
+        acceptAnswer();
+    }
+
     getchar();
     return 0;
 }
