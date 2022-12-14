@@ -2,14 +2,20 @@
 
 extern char puzzle[ROWS][COLUMNS];
 extern char dictionary[][10];
-extern int wordCount;
-//extern char chosenWords[WORDSTOCHOOSE][10];
+extern int dictSize;
+extern char wordBank[WORDSTOCHOOSE][10];
 
 
-
-void shiftArray(char* array, int* arrLen, int index) { // deletes array entry at the given index, and shifts remaining entries back
+// deletes array entry at the given index, and shifts remaining entries back
+void shiftArray(char* array, int* arrLen, int index) {     
     memcpy(array + index*10, array + index*10 + 10, (*arrLen * 10) - index*10);
     *arrLen -= 1;
+}
+
+// shifts the array forward, and logs the given word into the array at index 0
+void logWord(char* array,char word[10]) {
+    memcpy(array, array + 10, (WORDSTOCHOOSE-1)*10);
+    strcpy_s(array, 10, word);
 }
 
 /*
@@ -82,7 +88,8 @@ int* orientationToOffsets(int orientation) {
     return output;
 }
 
-int getValidArea(int* maxColumn, int* maxRow, int orientation, int wordLen) { // returns 1 if word is to long for given orientation, else returns 0
+// returns 1 if word is to long for given orientation, else returns 0
+int getValidArea(int* maxColumn, int* maxRow, int orientation, int wordLen) { 
     switch (orientation)
     {
     case 0: //Horizontal
@@ -109,9 +116,8 @@ int getValidArea(int* maxColumn, int* maxRow, int orientation, int wordLen) { //
     }
 }
 
-
-
-int collisionTest(char word[10], int column, int row, int orientation) { //returns 1 if the word will intersect, returns 0 if position is valid
+//returns 1 if the word will intersect, returns 0 if position is valid
+int collisionTest(char word[10], int column, int row, int orientation) { 
     int i;
     char letter;
     int* offsets = orientationToOffsets(orientation);
@@ -133,7 +139,8 @@ int collisionTest(char word[10], int column, int row, int orientation) { //retur
     return 0;
 }
 
-int putWord(int index, int orientation) { // returns 1 if no valid psition could be found for the given word in a horizontal orintation, else returns 0
+// returns 1 if no valid psition could be found for the given word in the given orintation, else returns 0
+int putWord(int index, int orientation) { 
     char word[10];
     int maxRow, maxColumn;
     int startRow, startColumn;
@@ -164,7 +171,10 @@ int putWord(int index, int orientation) { // returns 1 if no valid psition could
     for (i = 0; i < strlen(word); i++) {// if all previos steps succeded, write the word into the chosen area
         puzzle[startRow + i*y][startColumn + i*x] = word[i];
     }
-    shiftArray(&dictionary, &wordCount, index); // delete the word form the dictionary to prevent duplicates
+    shiftArray(&dictionary, &dictSize, index); // delete the word form the dictionary to prevent duplicates
+    printf("\nlogging %s\n");
+    logWord(wordBank, word); // log the word into wordBank once it's been succesfully written
+    displayWordBank();
     return 0;
 }
 
@@ -213,7 +223,7 @@ void fillPuzzleWithWords()
     {
         //select a random index of a word from those remaining in the list
         //printf("\nCurrent wordCount = %i", wordCount);
-        wordIndex = rand() % wordCount;
+        wordIndex = rand() % dictSize;
 
         orientation = rand() % 3; // To generate a random number from 0, 1, & 2
         j = 0;
