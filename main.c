@@ -43,9 +43,9 @@ int main(void)
     
     createBlankPuzzle();
     fillPuzzleWithWords();
-    displayPuzzel();
+    //displayPuzzle();
     fillRandom();
-    displayPuzzel();
+    displayPuzzle();
     displayWordBank();
 
     getchar();

@@ -4,18 +4,13 @@ extern char puzzle[ROWS][COLUMNS];
 extern char dictionary[][10];
 extern int dictSize;
 extern char wordBank[WORDSTOCHOOSE][10];
+extern void logWord(char* array, char word[10]);
 
 
 // deletes array entry at the given index, and shifts remaining entries back
 void shiftArray(char* array, int* arrLen, int index) {     
     memcpy(array + index*10, array + index*10 + 10, (*arrLen * 10) - index*10);
     *arrLen -= 1;
-}
-
-// shifts the array forward, and logs the given word into the array at index 0
-void logWord(char* array,char word[10]) {
-    memcpy(array, array + 10, (WORDSTOCHOOSE-1)*10);
-    strcpy_s(array, 10, word);
 }
 
 /*
@@ -44,22 +39,22 @@ void createBlankPuzzle()
     }
 }
 
-void displayPuzzel()
+void displayPuzzle()
 {
     int i, j, rowNum = 0;
     char x = 'A';
 
     // First display column names
-    printf("\n     ");
+    printf("\n     "HIGHLIGHT);
     for (i = 0; i < COLUMNS; i++)
     {
         printf("%c ", x + i);
     }
-    printf("\n\n");
+    printf(RESET"\n\n");
 
     for (i = 0; i < ROWS; i++)
     {
-        printf("%2d   ", rowNum+1);
+        printf(HIGHLIGHT"%2d"RESET"   ", rowNum+1);
         rowNum++;
         for (j = 0; j < COLUMNS; j++)
         {
@@ -171,10 +166,9 @@ int putWord(int index, int orientation) {
     for (i = 0; i < strlen(word); i++) {// if all previos steps succeded, write the word into the chosen area
         puzzle[startRow + i*y][startColumn + i*x] = word[i];
     }
+
+    logWord(&wordBank, word); // log the word into wordBank once it's been succesfully written
     shiftArray(&dictionary, &dictSize, index); // delete the word form the dictionary to prevent duplicates
-    printf("\nlogging %s\n");
-    logWord(wordBank, word); // log the word into wordBank once it's been succesfully written
-    displayWordBank();
     return 0;
 }
 
@@ -231,11 +225,6 @@ void fillPuzzleWithWords()
         while (putWord(wordIndex,orientation) && j<MAXITERATIONS) { // attempts to find pos'n for this word in this orientation 10 times before failing
             j++;
         }
-
-        if (j>=10) {
-            printf("\nRAN OUT OF SPACE\n");
-        }
-        
     }
 }
 
