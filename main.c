@@ -46,6 +46,7 @@ int main(void)
     displayPuzzel();
     fillRandom();
     displayPuzzel();
+    displayWordBank();
 
     getchar();
     return 0;

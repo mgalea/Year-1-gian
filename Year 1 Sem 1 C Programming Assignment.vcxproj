@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="main.c" />
     <ClCompile Include="Puzzle Generator.c" />
+    <ClCompile Include="Word Bank.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Definitions.h" />

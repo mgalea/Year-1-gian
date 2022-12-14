@@ -21,6 +21,9 @@
     <ClCompile Include="Puzzle Generator.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Word Bank.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Definitions.h">
