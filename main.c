@@ -56,6 +56,7 @@ int main(void)
         printf("\t\t\t\t");
         setCursorPos(ansField);
         acceptAnswer();
+        printf("\nisCardinal?: %i", isCardinalDirection());
     }
     
     getchar();
