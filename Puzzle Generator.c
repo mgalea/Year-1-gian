@@ -34,7 +34,7 @@ void createBlankPuzzle()
     {
         for (j = 0; j < COLUMNS; j++)
         {
-            puzzle[i][j] = '*';
+            puzzle[i][j] = '@';
         }
     }
 }
@@ -42,13 +42,12 @@ void createBlankPuzzle()
 void displayPuzzle()
 {
     int i, j, rowNum = 0;
-    char x = 'A';
 
     // First display column names
     printf("\n     "HIGHLIGHT);
     for (i = 0; i < COLUMNS; i++)
     {
-        printf("%c ", x + i);
+        printf("%c ", 'A' + i);
     }
     printf(RESET"\n\n");
 
@@ -121,7 +120,7 @@ int collisionTest(char word[10], int column, int row, int orientation) {
     for (i = 0; i < strlen(word); i++) {
         letter = puzzle[row + i*y][column + i*x];
         //printf("\nCollision Test: testing (%i,%i). Value is %c", column + i * x, row + i * y, letter);
-        if (letter == '*' || letter == word[i]) {
+        if (letter == '@' || letter == word[i]) {
             continue;
         }
         else {
@@ -233,7 +232,7 @@ void fillRandom(void) {
 
     for (i = 0; i < ROWS; i++) {
         for (j = 0; j < COLUMNS; j++) {
-            if (puzzle[i][j] == '*') {
+            if (puzzle[i][j] == '@') {
                 puzzle[i][j] = 65 + rand() % 26;
             }
         }

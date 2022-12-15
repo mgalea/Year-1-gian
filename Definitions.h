@@ -8,11 +8,11 @@
 // (board dimensions restricted by no. of letters and 3-digit number formatting)
 
 
-#define ROWS 10
-#define COLUMNS 10
+#define ROWS 20
+#define COLUMNS 20
 #define AREA (ROWS*COLUMNS)
 
-#define WORDSTOCHOOSE 10
+#define WORDSTOCHOOSE 4
 
 #define MAXITERATIONS 50 // affects the chance of not finding a valid pos'n for a word
 

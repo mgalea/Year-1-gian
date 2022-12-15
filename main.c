@@ -40,7 +40,7 @@ extern char dictionary[][10];
 int main(void)
 {
     srand(time(NULL));
-    
+    printf("\x1b[=16h");
     createBlankPuzzle();
     fillPuzzleWithWords();
     //displayPuzzle();
@@ -49,15 +49,15 @@ int main(void)
     displayWordBank();
 
     // main gameplay loop:
-    printf("\n\nEnter Coordinates:    \n(e.g A1 D4)");
-
+    printf("\n\nEnter Coordinates:\t\n(e.g A1 D4)");
+    
     while (wordBankSize) {
         setCursorPos(ansField);
-        printf("%*c", 20);
+        printf("\t\t\t\t");
         setCursorPos(ansField);
         acceptAnswer();
     }
-
+    
     getchar();
     return 0;
 }

@@ -5,7 +5,7 @@ extern char dictionary[][10];
 extern int dictSize;
 extern int wordBankSize;
 extern char wordBank[WORDSTOCHOOSE][10];
-extern int found[WORDSTOCHOOSE];
+extern int found;
 
 // shifts the array forward, and logs the given word into the array at index 0
 void logWord(char* array, char word[10]) {
@@ -30,8 +30,8 @@ void displayWordBank() {
 	getWordBankSize();
 	printf("\n%i Words to Find:\n", wordBankSize);
 	for (i = 0; i < WORDSTOCHOOSE; i++) {
-		printf("\n%i", binaryRead(found, i));
-		printf(binaryRead(found,i) ? GRNBACK"%s"RESET", " : REDBACK"%s"RESET", ", wordBank[i]);
+		//printf("\n%i: %i ",i, binaryRead(found, i));
+		printf(binaryRead(0,i) ? GRNBACK"%s"RESET", " : REDBACK"%s"RESET", ", wordBank[i]);
 	}
 	printf("\b\b \b\n"); // erase the final ", "
 }
