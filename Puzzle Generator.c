@@ -62,7 +62,7 @@ void displayPuzzle()
             letter = puzzle[i][j];
             highlight = binaryRead(letter, 5);
 
-            printf(highlight ? HIGHLIGHT"%c "RESET : "%c ", (letter & ~(1 << 5)));
+            printf(highlight ? GRNBACK"%c "RESET : "%c ", (letter & ~(1 << 5)));
         }
         printf("\n");
     }
