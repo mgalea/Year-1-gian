@@ -40,7 +40,6 @@ extern char dictionary[][10];
 int main(void)
 {
     srand(time(NULL));
-    printf("\x1b[=16h");
     createBlankPuzzle();
     fillPuzzleWithWords();
     //displayPuzzle();
@@ -49,16 +48,16 @@ int main(void)
     displayWordBank();
 
     // main gameplay loop:
-    printf("\n\nEnter Coordinates:\t\n(e.g A1 D4)");
+    printf("\n\nEnter Coordinates:\t\n(e.g A1 D4 or a1 d4)\n----------------------------------");
     
     while (wordBankSize) {
         setCursorPos(ansField);
-        printf("\t\t\t\t");
-        setCursorPos(ansField);
+        printf(EMPTYFIELD); // erase previous answer
         acceptAnswer();
-        printf("\nisCardinal?: %i", isCardinalDirection());
+        searchBoard();
+        //printf("\nrelative Orientation: %i", cardinalDirection());
     }
-    
+
     getchar();
     return 0;
 }

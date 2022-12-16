@@ -42,14 +42,16 @@ void createBlankPuzzle()
 void displayPuzzle()
 {
     int i, j, rowNum = 0;
+    int highlight;
+    char letter;
 
     // First display column names
-    printf("\n     "HIGHLIGHT);
+    printf(CURSORHOME HIGHLIGHT"\n     ");
     for (i = 0; i < COLUMNS; i++)
     {
         printf("%c ", 'A' + i);
     }
-    printf(RESET"\n\n");
+    printf("\n  \n"RESET);
 
     for (i = 0; i < ROWS; i++)
     {
@@ -57,7 +59,10 @@ void displayPuzzle()
         rowNum++;
         for (j = 0; j < COLUMNS; j++)
         {
-            printf("%c ", puzzle[i][j]);
+            letter = puzzle[i][j];
+            highlight = binaryRead(letter, 5);
+
+            printf(highlight ? HIGHLIGHT"%c "RESET : "%c ", (letter & ~(1 << 5)));
         }
         printf("\n");
     }
@@ -77,6 +82,10 @@ int* orientationToOffsets(int orientation) {
         break;
     case 2:
         output[0] = 1;
+        break;
+    default:
+        output[0] = 0;
+        output[1] = 0;
         break;
     }
     return output;

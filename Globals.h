@@ -1,5 +1,14 @@
 #include "Definitions.h"
 
+// prints the binary of the given value
+void toBin(int value) {
+    int i;
+    printf("\n");
+    for (i = 0; i < sizeof(value)*8; i++) {
+        printf("%i", binaryRead(value, i));
+    }
+}
+
 // stes cursor position to given x,y coords
 void setCursorPos(int coords[2]) {
     printf(CURSORHOME);
@@ -27,7 +36,7 @@ int binaryRead(int binaryValue, int position) {
 char puzzle[ROWS][COLUMNS];
 
 char dictionary[][10] = { "GIRL" , "BOY" , "SHIP" , "CAT" , "FOG" , "KITE" , "BAG" , "STAMP" , "ZOOM" , "JOY", "CAR" , "BUS" , "VAN" , "BOAT" , "BIKE" , "TURBO" , "SCHOOL" , "COVID" , "VIRUS" , "STAR" };
-char wordBank[WORDSTOCHOOSE][10];
+char wordBank[WORDSTOCHOOSE][10] = {""};
 unsigned int found = 0;
 
 
@@ -36,3 +45,4 @@ int wordBankSize = WORDSTOCHOOSE;
 
 int ansField[2] = { 19,ROWS + 9 };
 int logField[2] = { 1,ROWS + 12 };
+int wordBankField[2] = { 1,ROWS + 4 };
