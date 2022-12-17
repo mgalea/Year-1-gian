@@ -13,7 +13,7 @@ extern int* orientationToOffsets(orientation);
 extern int remainingWords;
 
 //returns 1 if the string is a letter followed by some numbers, else retuns 0.
-int isValidInput(char input[10]) {
+int isValidInput(char input[11]) {
 	int i;
 	int letter = input[0];
 
@@ -32,14 +32,19 @@ int isValidInput(char input[10]) {
 	return 1;
 }
 
-void acceptAnswer() {
-	char answer[10] = "";
+void  acceptAnswer() {
+	char answer[11] = "";
 	char* token;
 	char* context;
 	gets(answer);
 	if (!answer[0]) { // prevent crash if user enters a blank answer
 		setCursorPos(logField);
 		printf(CLEARFIELD REDFORE"Cannot leave field blank"RESET);
+		return 0;
+	}
+	if (!strchr(answer, ' ')) { // prevents crash if answer does not contain a space
+		setCursorPos(logField);
+		printf(CLEARFIELD REDFORE"Coordinates format is <letter><number> <letter><number>"RESET);
 		return 0;
 	}
 	// start coordinate:
@@ -64,7 +69,7 @@ void acceptAnswer() {
 	//end column no.
 	token += 1;
 	coord[3] = atoi(token) - 1;
-
+	return 1;
 	
 	//printf("\n\n (%c,%c) -> (%c,%c)", answer[0], answer[1], answer[3], answer[4]);
 	//printf("\n\n (%i,%i) -> (%i,%i)",coord[0],coord[1], coord[2], coord[3]);
@@ -85,9 +90,10 @@ void searchBoard() {
 	int* offsets = orientationToOffsets(orientation);
 	int yo = *offsets, xo = *(offsets + 1);
 	int x = 0, y = 0, i;
-	char word[10] = " ";
+	char word[11] = " ";
 	char letter;
 	char* bankWord = NULL;
+
 	if (orientation == -1) {
 		setCursorPos(logField);
 		printf(CLEARFIELD REDFORE"Invalid Orientation, words may be vertical, horizontal, or diagonal only."RESET);
@@ -101,7 +107,7 @@ void searchBoard() {
 			setCursorPos(logField);
 			printf(CLEARFIELD REDFORE"Words cannot be longer than 10 letters."RESET);
 			strcpy_s(word, 10, "");
-			break;
+			return 0;
 		}
 		letter = puzzle[y][x];
 		binaryWrite(&letter, 5, 0); // remove highlight data from letter
@@ -160,7 +166,7 @@ void win() {
 
 	timeToComplete = difftime(time(NULL), timer);
 	printf("You completed a " HIGHLIGHT "%ix%i" RESET " crossword with " HIGHLIGHT "%i words" RESET " in: " HIGHLIGHT "%i:%02i:%02i\n" RESET
-		, COLUMNS, ROWS, wordBankSize, timeToComplete / 3600, timeToComplete / 60, timeToComplete % 60);
+		, COLUMNS, ROWS, wordBankSize, timeToComplete / 3600, (timeToComplete% 3600) / 60, timeToComplete % 60);
 }
 
 

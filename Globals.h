@@ -43,8 +43,8 @@ unsigned int found = 0;
 int dictSize = sizeof(dictionary) / sizeof(dictionary[0]);
 int wordBankSize = WORDSTOCHOOSE;
 
-int ansField[2] = { 19,ROWS + 9 };
-int logField[2] = { 1,ROWS + 12 };
+int ansField[2] = { 19,ROWS + 8 };
+int logField[2] = { 1,ROWS + 11 };
 int wordBankField[2] = { 1,ROWS + 4 };
 
 int remainingWords;

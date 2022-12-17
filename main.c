@@ -42,30 +42,32 @@ extern int remainingWords;
 int main(void)
 {
     extern time_t timer;
+    int Continue = 0;
     time(&timer);
+    //createMenu()
 
     srand(time(NULL));
     createBlankPuzzle();
     fillPuzzleWithWords();
     //displayPuzzle();
-    //fillRandom();
+    fillRandom();
     displayPuzzle();
     displayWordBank();
     remainingWords = wordBankSize;
 
     // main gameplay loop:
-    printf("\n\nEnter Coordinates:\t\n(e.g A1 D4 or a1 d4)\n----------------------------------\n"CURSORHOME);
+    printf("\nEnter Coordinates:\t\n(e.g A1 D4 or a1 d4)\n");
+    printLine(COLUMNS*2 + 10);
    
-
+    //remainingWords = 0; //used for testing post-game
     while (remainingWords) {
         setCursorPos(ansField);
         printf(CLEARFIELD); // erase previous answer
-        acceptAnswer();
-        searchBoard();
+        if(acceptAnswer()){
+            searchBoard();
+        }
     }
     win();
-
-    
     getchar();
     return 0;
 }

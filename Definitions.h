@@ -3,13 +3,13 @@
 #include <stdlib.h>
 #include <time.h>
 
-// Program now supports boards up to 26 columns and 99 rows, and up to 20 hidden word
+// Program now supports boards up to 26 columns and 19 rows, and up to 20 hidden word
 // (hidden words restriceted by number of words in dictionary)
-// (board dimensions restricted by no. of letters and 3-digit number formatting)
+// (board dimensions restricted by no. of letters and terminal scrolling)
 
 
-#define ROWS 18
-#define COLUMNS 18
+#define ROWS 10
+#define COLUMNS 10
 #define AREA (ROWS*COLUMNS)
 
 #define WORDSTOCHOOSE 4
@@ -36,6 +36,7 @@ extern void createBlankPuzzle();
 #define CURSORPOS  "\x1b[%i;%iH"
 #define CURSORHOME "\x1b[H"
 #define CLEARFIELD "\x1b[0K"
+#define CLEARLINE "\x1b[2K"
 #define CLRSCREEN  "\x1b[2J"CURSORHOME
 
 
