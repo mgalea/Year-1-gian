@@ -9,6 +9,9 @@ extern int found;
 int coord[4]; // startRow, startColumn, endRow, endColumn
 extern int* orientationToOffsets(orientation);
 
+
+extern int remainingWords;
+
 //returns 1 if the string is a letter followed by some numbers, else retuns 0.
 int isValidInput(char input[10]) {
 	int i;
@@ -30,13 +33,13 @@ int isValidInput(char input[10]) {
 }
 
 void acceptAnswer() {
-	char answer[10];
+	char answer[10] = "";
 	char* token;
 	char* context;
 	gets(answer);
 	if (!answer[0]) { // prevent crash if user enters a blank answer
 		setCursorPos(logField);
-		printf(EMPTYFIELD REDFORE"Cannot leave field blank"RESET);
+		printf(CLEARFIELD REDFORE"Cannot leave field blank"RESET);
 		return 0;
 	}
 	// start coordinate:
@@ -87,7 +90,7 @@ void searchBoard() {
 	char* bankWord = NULL;
 	if (orientation == -1) {
 		setCursorPos(logField);
-		printf(EMPTYFIELD REDFORE"Invalid Orientation, words may be vertical, horizontal, or diagonal only."RESET);
+		printf(CLEARFIELD REDFORE"Invalid Orientation, words may be vertical, horizontal, or diagonal only."RESET);
 		return 0;
 	}
 	x = coord[0]; // column
@@ -96,7 +99,7 @@ void searchBoard() {
 	do {
 		if (i >= 10) {
 			setCursorPos(logField);
-			printf(EMPTYFIELD REDFORE"Words cannot be longer than 10 letters."RESET);
+			printf(CLEARFIELD REDFORE"Words cannot be longer than 10 letters."RESET);
 			strcpy_s(word, 10, "");
 			break;
 		}
@@ -111,19 +114,21 @@ void searchBoard() {
 	if (!word) {
 		return 0;
 	}
-
+	
+	// compare word to wordbank
 	for (i = 0; i < wordBankSize; i++) {
 		bankWord = wordBank[i];
 		if (strcmp(bankWord, word) == 0) {
 			if (binaryRead(found, i)) {
 				setCursorPos(logField);
-				printf(EMPTYFIELD"You already found %s.", word);
+				printf(CLEARFIELD"You already found %s.", word);
 				return 0;
 			}
 			binaryWrite(&found,i,1);
 			displayWordBank();
 			x = coord[0];
 			y = coord[1];
+			// highlihght word in puzzle
 			do {
 				binaryWrite(&puzzle[y][x],5,1);
 				x += xo;
@@ -131,13 +136,31 @@ void searchBoard() {
 			} while (!(x > coord[2] || y > coord[3]));
 			displayPuzzle();
 			setCursorPos(logField);
-			printf(EMPTYFIELD GRNFORE"You Found %s!"RESET, word);
+			remainingWords--;
+			printf(CLEARFIELD GRNFORE"You Found %s!"RESET, word);
 			return 1;
 		}
 	}
 	setCursorPos(logField);
-	printf(EMPTYFIELD REDFORE"%s is not in the word bank."RESET, word);
+	printf(CLEARFIELD REDFORE"%s is not in the word bank."RESET, word);
 	
+}
+
+void win() {
+	extern time_t timer;
+	time_t timeToComplete;
+	printf(CLRSCREEN GRNBACK
+		"__     __   ____    _    _    __          __  _____   _   _   _   \n"
+		"\\ \\   / /  / __ \\  | |  | |   \\ \\        / / |_   _| | \\ | | | |  \n"
+		" \\ \\_/ /  | |  | | | |  | |    \\ \\  /\\  / /    | |   |  \\| | | |  \n"
+		"  \\   /   | |  | | | |  | |     \\ \\/  \\/ /     | |   | . ` | | |  \n"
+		"   | |    | |__| | | |__| |      \\  /\\  /     _| |_  | |\\  | |_|  \n"
+		"   |_|     \\____/   \\____/        \\/  \\/     |_____| |_| \\_| (_)  \n"
+		"                                                                  \n\n"RESET);
+
+	timeToComplete = difftime(time(NULL), timer);
+	printf("You completed a " HIGHLIGHT "%ix%i" RESET " crossword with " HIGHLIGHT "%i words" RESET " in: " HIGHLIGHT "%i:%02i:%02i\n" RESET
+		, COLUMNS, ROWS, wordBankSize, timeToComplete / 3600, timeToComplete / 60, timeToComplete % 60);
 }
 
 

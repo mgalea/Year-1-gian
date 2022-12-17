@@ -30,6 +30,8 @@ extern char puzzle[ROWS][COLUMNS];
 
 extern char dictionary[][10];
 
+extern int remainingWords;
+
 //extern char chosenWords[WORDSTOCHOOSE][10];
 
 
@@ -39,25 +41,31 @@ extern char dictionary[][10];
 
 int main(void)
 {
+    extern time_t timer;
+    time(&timer);
+
     srand(time(NULL));
     createBlankPuzzle();
     fillPuzzleWithWords();
     //displayPuzzle();
-    fillRandom();
+    //fillRandom();
     displayPuzzle();
     displayWordBank();
+    remainingWords = wordBankSize;
 
     // main gameplay loop:
-    printf("\n\nEnter Coordinates:\t\n(e.g A1 D4 or a1 d4)\n----------------------------------");
-    
-    while (wordBankSize) {
+    printf("\n\nEnter Coordinates:\t\n(e.g A1 D4 or a1 d4)\n----------------------------------\n"CURSORHOME);
+   
+
+    while (remainingWords) {
         setCursorPos(ansField);
-        printf(EMPTYFIELD); // erase previous answer
+        printf(CLEARFIELD); // erase previous answer
         acceptAnswer();
         searchBoard();
-        //printf("\nrelative Orientation: %i", cardinalDirection());
     }
+    win();
 
+    
     getchar();
     return 0;
 }

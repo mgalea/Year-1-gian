@@ -46,12 +46,12 @@ void displayPuzzle()
     char letter;
 
     // First display column names
-    printf(CURSORHOME HIGHLIGHT"\n     ");
+    printf(CURSORHOME HIGHLIGHT"     ");
     for (i = 0; i < COLUMNS; i++)
     {
         printf("%c ", 'A' + i);
     }
-    printf("\n  \n"RESET);
+    printf(RESET"\n"HIGHLIGHT"  \n"RESET);
 
     for (i = 0; i < ROWS; i++)
     {

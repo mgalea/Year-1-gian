@@ -46,3 +46,7 @@ int wordBankSize = WORDSTOCHOOSE;
 int ansField[2] = { 19,ROWS + 9 };
 int logField[2] = { 1,ROWS + 12 };
 int wordBankField[2] = { 1,ROWS + 4 };
+
+int remainingWords;
+
+time_t timer;

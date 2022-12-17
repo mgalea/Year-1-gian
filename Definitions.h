@@ -8,11 +8,11 @@
 // (board dimensions restricted by no. of letters and 3-digit number formatting)
 
 
-#define ROWS 15
-#define COLUMNS 15
+#define ROWS 18
+#define COLUMNS 18
 #define AREA (ROWS*COLUMNS)
 
-#define WORDSTOCHOOSE 15
+#define WORDSTOCHOOSE 4
 
 #define MAXITERATIONS 50 // affects the chance of not finding a valid pos'n for a word
 
@@ -35,7 +35,8 @@ extern void createBlankPuzzle();
 #define RESET      "\x1b[0m"
 #define CURSORPOS  "\x1b[%i;%iH"
 #define CURSORHOME "\x1b[H"
-#define EMPTYFIELD "\x1b[0K"
+#define CLEARFIELD "\x1b[0K"
+#define CLRSCREEN  "\x1b[2J"CURSORHOME
 
 
 
