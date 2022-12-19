@@ -32,6 +32,7 @@ extern void createBlankPuzzle();
 #define GRNBACK    "\x1b[42m"
 #define REDFORE    "\x1b[31m"
 #define GRNFORE    "\x1b[32m"
+#define BOLD	   "\x1b[1m"
 #define RESET      "\x1b[0m"
 #define CURSORPOS  "\x1b[%i;%iH"
 #define CURSORHOME "\x1b[H"

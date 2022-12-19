@@ -44,8 +44,8 @@ int main(void)
     extern time_t timer;
     int Continue = 0;
     time(&timer);
-    //createMenu()
-
+    mainMenu();
+    /*
     srand(time(NULL));
     createBlankPuzzle();
     fillPuzzleWithWords();
@@ -68,6 +68,8 @@ int main(void)
         }
     }
     win();
+    */
+
     getchar();
     return 0;
 }
