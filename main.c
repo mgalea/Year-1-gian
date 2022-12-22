@@ -7,6 +7,7 @@
 #include "definitions.h"
 #include "menu.h"
 #include "puzzle_generator.h"
+#include "game_logic.h"
 
 char puzzle[ROWS][COLUMNS];
 
@@ -25,7 +26,8 @@ void newPuzzle() {
 }
 
 
-void game() {
+int game() {
+
     refresh();
 
     //remainingWords = 0; //used for testing post-game
@@ -37,9 +39,11 @@ void game() {
         case 1:
             searchBoard();
             break;
+
         case -1:
             return 0;
             break;
+            
         default:
             break;
         }
