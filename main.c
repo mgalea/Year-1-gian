@@ -35,6 +35,7 @@ extern int remainingWords;
 extern time_t startTime;
 
 void newPuzzle() {
+    found = 0;
     createBlankPuzzle();
     fillPuzzleWithWords();
     fillRandom();

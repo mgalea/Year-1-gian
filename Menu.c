@@ -89,3 +89,25 @@ void pauseMenu() {
 	}
 }
 
+void endMenu() {
+	printLine(60);
+	printf("\n1. New Game\n2. Return to Main Menu\n3. Quit\n");
+	printLine(60);
+	switch (userInput(1, 3))
+	{
+	default:
+		break;
+	case 1:
+		newPuzzle();
+		game();
+		break;
+	case 2:
+		mainMenu();
+		return 0;
+		break;
+	case 3:
+		return 0;
+		break;
+	}
+}
+

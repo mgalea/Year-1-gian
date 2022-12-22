@@ -169,18 +169,20 @@ void searchBoard() {
 void win() {
 	extern time_t startTime;
 	extern time_t timeToComplete;
-	printf(CLRSCREEN GRNBACK
+	printf(CLRSCREEN GRNBACK BOLD
 		"  __     __   ____    _    _    __          __  _____   _   _   _   \n"
 		"  \\ \\   / /  / __ \\  | |  | |   \\ \\        / / |_   _| | \\ | | | |  \n"
 		"   \\ \\_/ /  | |  | | | |  | |    \\ \\  /\\  / /    | |   |  \\| | | |  \n"
 		"    \\   /   | |  | | | |  | |     \\ \\/  \\/ /     | |   | . ` | | |  \n"
 		"     | |    | |__| | | |__| |      \\  /\\  /     _| |_  | |\\  | |_|  \n"
 		"     |_|     \\____/   \\____/        \\/  \\/     |_____| |_| \\_| (_)  \n"
-		"                                                                    \n\n"RESET);
+		"                                                                    "
+		"\n\n"RESET);
 
 	timeToComplete += difftime(time(NULL), startTime);
-	printf("You completed a " HIGHLIGHT "%ix%i" RESET " crossword with " HIGHLIGHT "%i words" RESET " in: " HIGHLIGHT "%i:%02i:%02i\n" RESET
+	printf("You completed a " HIGHLIGHT "%ix%i" RESET " crossword with " HIGHLIGHT "%i words" RESET " in: " HIGHLIGHT "%i:%02i:%02i\n\n" RESET
 		, COLUMNS, ROWS, wordBankSize, timeToComplete / 3600, (timeToComplete% 3600) / 60, timeToComplete % 60);
+	endMenu();
 }
 
 
