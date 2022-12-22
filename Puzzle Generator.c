@@ -46,7 +46,7 @@ void displayPuzzle()
     char letter;
 
     // First display column names
-    printf(CURSORHOME HIGHLIGHT"     ");
+    printf(CLRSCREEN CURSORHOME HIGHLIGHT"     ");
     for (i = 0; i < COLUMNS; i++)
     {
         printf("%c ", 'A' + i);
@@ -60,7 +60,7 @@ void displayPuzzle()
         for (j = 0; j < COLUMNS; j++)
         {
             letter = puzzle[i][j];
-            highlight = binaryRead(letter, 5);
+            highlight = getBit(letter, 5);
 
             printf(highlight ? GRNBACK"%c "RESET : "%c ", (letter & ~(1 << 5)));
         }
@@ -234,6 +234,7 @@ void fillPuzzleWithWords()
             j++;
         }
     }
+    getWordBankSize();
 }
 
 void fillRandom(void) {

@@ -32,44 +32,51 @@ extern char dictionary[][10];
 
 extern int remainingWords;
 
-//extern char chosenWords[WORDSTOCHOOSE][10];
+extern time_t startTime;
 
-
-
-
-
-
-int main(void)
-{
-    extern time_t timer;
-    int Continue = 0;
-    time(&timer);
-    mainMenu();
-    /*
-    srand(time(NULL));
+void newPuzzle() {
     createBlankPuzzle();
     fillPuzzleWithWords();
-    //displayPuzzle();
     fillRandom();
-    displayPuzzle();
-    displayWordBank();
     remainingWords = wordBankSize;
+}
 
-    // main gameplay loop:
-    printf("\nEnter Coordinates:\t\n(e.g A1 D4 or a1 d4)\n");
-    printLine(COLUMNS*2 + 10);
-   
+void game() {
+    refresh();
+
     //remainingWords = 0; //used for testing post-game
     while (remainingWords) {
         setCursorPos(ansField);
         printf(CLEARFIELD); // erase previous answer
-        if(acceptAnswer()){
+        switch (acceptAnswer())
+        {
+        case 1:
             searchBoard();
+            break;
+        case -1:
+            return 0;
+            break;
+        default:
+            break;
         }
+
     }
     win();
-    */
+}
 
-    getchar();
+void pauseTimer() {
+    timeToComplete += difftime(time(NULL), startTime);
+}
+void resumeTimer() {
+    time(&startTime);
+}
+
+
+int main(void)
+{
+    time(&startTime);
+    srand(time(NULL));
+    mainMenu();
+
     return 0;
 }

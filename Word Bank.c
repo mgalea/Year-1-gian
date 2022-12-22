@@ -29,12 +29,11 @@ void getWordBankSize() {
 
 void displayWordBank() {
 	int i;
-	getWordBankSize();
 	setCursorPos(wordBankField);
 	printf("\n" CLEARFIELD "%i Words to Find : \n"CLEARFIELD, wordBankSize);
 	for (i = 0; i < WORDSTOCHOOSE; i++) {
 		//printf("\n%i: %i ",i, binaryRead(found, i));
-		printf(binaryRead(found,i) ? GRNBACK"%s"RESET", " : REDBACK"%s"RESET", ", wordBank[i]);
+		printf(getBit(found,i) ? GRNBACK"%s"RESET", " : REDBACK"%s"RESET", ", wordBank[i]);
 	}
 	printf("\b\b \b\n"); // erase the final ", "
 }

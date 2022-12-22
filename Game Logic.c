@@ -12,6 +12,15 @@ extern int* orientationToOffsets(orientation);
 
 extern int remainingWords;
 
+//displays all game elements
+void refresh() {
+	displayPuzzle();
+	displayWordBank();
+	printf("\nEnter Coordinates:\t\n(e.g a1 d4) Type menu to pause the fame and open the menu\n");
+	printLine(COLUMNS * 2 + 10);
+}
+
+
 //returns 1 if the string is a letter followed by some numbers, else retuns 0.
 int isValidInput(char input[11]) {
 	int i;
@@ -32,7 +41,7 @@ int isValidInput(char input[11]) {
 	return 1;
 }
 
-void  acceptAnswer() {
+int  acceptAnswer() {
 	char answer[11] = "";
 	char* token;
 	char* context;
@@ -41,6 +50,11 @@ void  acceptAnswer() {
 		setCursorPos(logField);
 		printf(CLEARFIELD REDFORE"Cannot leave field blank"RESET);
 		return 0;
+	}
+	if (strcmp(answer,"menu") == 0) { // allows the user to open the pause menu
+		pauseTimer();
+		pauseMenu();
+		return -1;
 	}
 	if (!strchr(answer, ' ')) { // prevents crash if answer does not contain a space
 		setCursorPos(logField);
@@ -125,7 +139,7 @@ void searchBoard() {
 	for (i = 0; i < wordBankSize; i++) {
 		bankWord = wordBank[i];
 		if (strcmp(bankWord, word) == 0) {
-			if (binaryRead(found, i)) {
+			if (getBit(found, i)) {
 				setCursorPos(logField);
 				printf(CLEARFIELD"You already found %s.", word);
 				return 0;
@@ -140,7 +154,7 @@ void searchBoard() {
 				x += xo;
 				y += yo;
 			} while (!(x > coord[2] || y > coord[3]));
-			displayPuzzle();
+			refresh();
 			setCursorPos(logField);
 			remainingWords--;
 			printf(CLEARFIELD GRNFORE"You Found %s!"RESET, word);
@@ -153,18 +167,18 @@ void searchBoard() {
 }
 
 void win() {
-	extern time_t timer;
-	time_t timeToComplete;
+	extern time_t startTime;
+	extern time_t timeToComplete;
 	printf(CLRSCREEN GRNBACK
-		"__     __   ____    _    _    __          __  _____   _   _   _   \n"
-		"\\ \\   / /  / __ \\  | |  | |   \\ \\        / / |_   _| | \\ | | | |  \n"
-		" \\ \\_/ /  | |  | | | |  | |    \\ \\  /\\  / /    | |   |  \\| | | |  \n"
-		"  \\   /   | |  | | | |  | |     \\ \\/  \\/ /     | |   | . ` | | |  \n"
-		"   | |    | |__| | | |__| |      \\  /\\  /     _| |_  | |\\  | |_|  \n"
-		"   |_|     \\____/   \\____/        \\/  \\/     |_____| |_| \\_| (_)  \n"
-		"                                                                  \n\n"RESET);
+		"  __     __   ____    _    _    __          __  _____   _   _   _   \n"
+		"  \\ \\   / /  / __ \\  | |  | |   \\ \\        / / |_   _| | \\ | | | |  \n"
+		"   \\ \\_/ /  | |  | | | |  | |    \\ \\  /\\  / /    | |   |  \\| | | |  \n"
+		"    \\   /   | |  | | | |  | |     \\ \\/  \\/ /     | |   | . ` | | |  \n"
+		"     | |    | |__| | | |__| |      \\  /\\  /     _| |_  | |\\  | |_|  \n"
+		"     |_|     \\____/   \\____/        \\/  \\/     |_____| |_| \\_| (_)  \n"
+		"                                                                    \n\n"RESET);
 
-	timeToComplete = difftime(time(NULL), timer);
+	timeToComplete += difftime(time(NULL), startTime);
 	printf("You completed a " HIGHLIGHT "%ix%i" RESET " crossword with " HIGHLIGHT "%i words" RESET " in: " HIGHLIGHT "%i:%02i:%02i\n" RESET
 		, COLUMNS, ROWS, wordBankSize, timeToComplete / 3600, (timeToComplete% 3600) / 60, timeToComplete % 60);
 }

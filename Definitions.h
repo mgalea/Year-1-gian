@@ -14,7 +14,7 @@
 
 #define WORDSTOCHOOSE 4
 
-#define MAXITERATIONS 50 // affects the chance of not finding a valid pos'n for a word
+#define MAXITERATIONS 50 // affects the chance of not finding a valid position for a word
 
 
 //Functions:
@@ -37,8 +37,10 @@ extern void createBlankPuzzle();
 #define CURSORPOS  "\x1b[%i;%iH"
 #define CURSORHOME "\x1b[H"
 #define CLEARFIELD "\x1b[0K"
-#define CLEARLINE "\x1b[2K"
+#define CLEARLINE  "\x1b[2K"
 #define CLRSCREEN  "\x1b[2J"CURSORHOME
+#define SAVEPOS	   "\x1b 7"
+#define RECALLPOS  "\x1b 8"
 
 
 

@@ -5,7 +5,7 @@ void toBin(int value) {
     int i;
     printf("\n");
     for (i = 0; i < sizeof(value)*8; i++) {
-        printf("%i", binaryRead(value, i));
+        printf("%i", getBit(value, i));
     }
 }
 
@@ -28,7 +28,7 @@ void binaryWrite(int *binaryValue,int position, int bool) {
 }
 
 // reads the bit of the given int at the fiven position
-int binaryRead(int binaryValue, int position) {
+int getBit(int binaryValue, int position) {
     unsigned int mask = 1 << position;
     return ((mask & binaryValue) >> position);
 }
@@ -49,4 +49,5 @@ int wordBankField[2] = { 1,ROWS + 4 };
 
 int remainingWords;
 
-time_t timer;
+time_t startTime;
+time_t timeToComplete = 0;
