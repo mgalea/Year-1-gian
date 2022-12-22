@@ -1,37 +1,12 @@
-#include "Definitions.h"
+#ifndef GLOBALS_H
+#define GLOBALS_H
 
-// prints the binary of the given value
-void toBin(int value) {
-    int i;
-    printf("\n");
-    for (i = 0; i < sizeof(value)*8; i++) {
-        printf("%i", getBit(value, i));
-    }
-}
+#include "definitions.h"
 
-// stes cursor position to given x,y coords
-void setCursorPos(int coords[2]) {
-    printf(CURSORHOME);
-    printf(CURSORPOS, coords[1], coords[0]);
-}
-
-// sets the bit at given position of the given variable to the given value
-void binaryWrite(int *binaryValue,int position, int bool) {
-    unsigned int inverseMask = ~(1 << position);
-    if(bool==1||bool==0){
-        bool = bool << position;
-        *binaryValue = ((*binaryValue) & inverseMask) + bool;
-    }
-    else {
-        printf(REDFORE"Binary Write Error: Invalid bool!"RESET);
-    }
-}
-
-// reads the bit of the given int at the fiven position
-int getBit(int binaryValue, int position) {
-    unsigned int mask = 1 << position;
-    return ((mask & binaryValue) >> position);
-}
+void binaryWrite(int*,int, int);
+void toBin(int );
+void setCursorPos(int coords[2] );
+int getBit(int , int );
 
 char puzzle[ROWS][COLUMNS];
 
@@ -51,3 +26,38 @@ int remainingWords;
 
 time_t startTime;
 time_t timeToComplete = 0;
+
+// prints the binary of the given value
+void toBin(int value) {
+    int i;
+    printf("\n");
+    for (i = 0; i < sizeof(value)*8; i++) {
+        printf("%i", getBit(value, i));
+    }
+}
+
+// stes cursor position to given x,y coords
+void setCursorPos(int coords[2]) {
+    printf(CURSORHOME);
+    printf(CURSORPOS, coords[1], coords[0]);
+}
+
+// sets the bit at given position of the given variable to the given value
+void binaryWrite(int *binaryValue, int position, int bool) {
+    unsigned int inverseMask = ~(1 << position);
+    if(bool==1||bool==0){
+        bool = bool << position;
+        *binaryValue = ((*binaryValue) & inverseMask) + bool;
+    }
+    else {
+        printf(REDFORE"Binary Write Error: Invalid bool!"RESET);
+    }
+}
+
+// reads the bit of the given int at the fiven position
+int getBit(int binaryValue, int position) {
+    unsigned int mask = 1 << position;
+    return ((mask & binaryValue) >> position);
+}
+
+#endif

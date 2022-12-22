@@ -1,0 +1,108 @@
+// Available variables which can be used inside of strings.
+// ${workspaceRoot}: the root folder of the team
+// ${file}: the current opened file
+// ${fileBasename}: the current opened file's basename
+// ${fileDirname}: the current opened file's dirname
+// ${fileExtname}: the current opened file's extension
+// ${cwd}: the current working directory of the spawned process
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C Compile",
+            "command": "gcc",
+            "args": [
+                "-Wno-unused-function",
+                "${file}",
+                "-o",
+                "${fileBasenameNoExtension}",
+                "-l",
+                "gdi32",
+                "-l",
+                "user32",
+                "-l",
+                "kernel32",
+                "-l",
+                "comctl32"
+            ],
+            "problemMatcher": {
+                "owner": "cpp",
+                "fileLocation": [
+                    "relative",
+                    "${workspaceRoot}"
+                ],
+                "pattern": {
+                    "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                    "file": 1,
+                    "line": 2,
+                    "column": 3,
+                    "severity": 4,
+                    "message": 5
+                }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "C run",
+            "command": "${fileBasenameNoExtension}.exe",
+            "dependsOn": [
+                "C Compile"
+            ],
+            "dependsOrder": "sequence",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+        "type": "shell",
+        "label": "G++ Compile",
+        "command": "g++",
+        "args": [
+            "-Wno-all",
+            "${file}",
+            "-g",
+            "-o",
+            "${fileBasenameNoExtension}",
+            "-l",
+            "gdi32",
+            "-l",
+            "user32",
+            "-l",
+            "kernel32",
+            "-l",
+            "comctl32"
+        ],
+        "problemMatcher": {
+            "owner": "cpp",
+            "fileLocation": [
+                "relative",
+                "${workspaceRoot}"
+            ],
+            "pattern": {
+                "regexp": "^(.*):(\\d+):(\\d+):\\s+(warning|error):\\s+(.*)$",
+                "file": 1,
+                "line": 2,
+                "column": 3,
+                "severity": 4,
+                "message": 5
+            }
+        }
+    },
+    {
+        "type": "shell",
+        "label": "C (g++) run",
+        "command": "${fileBasenameNoExtension}.exe",
+        "dependsOn": [
+            "G++ Compile"
+        ],
+        "dependsOrder": "sequence",
+        "group": {
+            "kind": "build",
+            "isDefault": true
+        }
+    },
+
+    ]
+}

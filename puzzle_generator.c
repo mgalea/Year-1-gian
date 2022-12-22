@@ -1,4 +1,5 @@
-#include "Definitions.h"
+#include "definitions.h"
+#include "puzzle_generator.h"
 
 extern char puzzle[ROWS][COLUMNS];
 extern char dictionary[][10];
@@ -69,6 +70,7 @@ void displayPuzzle()
 }
 
 // outputs booleans for row, column offset for a given orientaion
+
 int* orientationToOffsets(int orientation) { 
     int output[2] = { 0,0 };
     switch (orientation)
