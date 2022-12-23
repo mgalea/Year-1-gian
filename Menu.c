@@ -30,7 +30,7 @@ int userInput(int min, int max)
 	return value;
 }
 
-void mainMenu()
+int mainMenu()
 {
 	printf(CLRSCREEN
 		   "    " HIGHLIGHT BOLD "  _____  _____    ____    _____  _____ __          __ ____   _____   _____  " RESET "\n"
@@ -43,8 +43,8 @@ void mainMenu()
 	printLine(40);
 	if (userInput(1, 2) == 1)
 	{
-		newPuzzle();
-		game();
+
+		return 1:
 	}
 	else
 	{

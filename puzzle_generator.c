@@ -1,12 +1,15 @@
 #include "definitions.h"
 #include "puzzle_generator.h"
 
-extern char puzzle[ROWS][COLUMNS];
-extern char dictionary[][10];
-extern int dictSize;
-extern char wordBank[WORDSTOCHOOSE][10];
-extern void logWord(char* array, char word[10]);
+char puzzle[ROWS][COLUMNS];
+char dictionary[][10];
+int dictSize;
 
+char wordBank[WORDSTOCHOOSE][10];
+void logWord(char* array, char word[10]);
+
+int found;
+int remainingWords;
 
 // deletes array entry at the given index, and shifts remaining entries back
 void shiftArray(char* array, int* arrLen, int index) {     
@@ -14,18 +17,14 @@ void shiftArray(char* array, int* arrLen, int index) {
     *arrLen -= 1;
 }
 
-/*
-void getRandomWords() // This code can generate duplicate words -- try to fix it
-{
-    int i, wordIndex;
-
-    for (i = 0; i < WORDSTOCHOOSE; i++)
-    {
-        wordIndex = rand() % wordCount;
-        strcpy_s(chosenWords[i], 10, allWords[wordIndex]);
-    }
+void newPuzzle() {
+    found = 0;
+    createBlankPuzzle();
+    fillPuzzleWithWords();
+    fillRandom();
+    remainingWords = wordBankSize;
 }
-*/
+
 
 void createBlankPuzzle()
 {

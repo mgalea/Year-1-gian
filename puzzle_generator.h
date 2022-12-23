@@ -10,7 +10,6 @@ int collisionTest(char word[10], int column, int row, int orientation);
 int putWord(int index, int orientation);
 
 void fillPuzzleWithWords();
-
 void fillRandom(void);
 
 #endif
