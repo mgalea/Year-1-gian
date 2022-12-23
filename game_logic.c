@@ -1,4 +1,4 @@
-#include "Definitions.h"
+#include "definitions.h"
 
 extern char puzzle[ROWS][COLUMNS];
 extern char wordBank[WORDSTOCHOOSE][10];

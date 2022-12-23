@@ -13,18 +13,7 @@ char puzzle[ROWS][COLUMNS];
 
 char dictionary[][10];
 
-int remainingWords;
-
 time_t startTime;
-
-void newPuzzle() {
-    found = 0;
-    createBlankPuzzle();
-    fillPuzzleWithWords();
-    fillRandom();
-    remainingWords = wordBankSize;
-}
-
 
 int game() {
 
@@ -50,20 +39,37 @@ int game() {
 
     }
     win();
+
+    return 1;
+}
+
+void startTimer() {
+    time(&startTime);
 }
 
 void pauseTimer() {
     timeToComplete += difftime(time(NULL), startTime);
 }
+
 void resumeTimer() {
     time(&startTime);
 }
 
+void endTimer() {
+    time(&startTime);
+}
 
 int main(void)
 {
-    time(&startTime);
-    srand(time(NULL));
-    mainMenu();
+    while(mainMenu()){
+
+        newPuzzle(ROWS, COLUMNS, WORDSTOCHOOSE);        //generate the puzzle
+
+        startTimer();                                   //start the game timer
+
+		//game();                                       //lets watch the game...
+
+    };
+
     return 0;
 }

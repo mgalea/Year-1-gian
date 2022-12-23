@@ -11,7 +11,6 @@
 #define AREA (ROWS*COLUMNS) // area covered by puzzle
 
 #define WORDSTOCHOOSE 4     // affects the chance of not finding a valid position for a word
-
 #define MAXITERATIONS 50    // affects the chance of not finding a valid position for a word
 
 
