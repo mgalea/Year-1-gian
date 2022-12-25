@@ -1,12 +1,19 @@
-#include "definitions.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#include "globals.h"
+#include "terminal_defs.h"
 #include "menu.h"
+#include "timer.h"
+
 
 void printLine(int width)
 {
-	int i;
-	for (i = 0; i < width; i++)
+	for (int i = 0; i < width; i++)
 	{
-		printf(BOLD "-" RESET);
+		printf(BOLD "_" RESET);
 	}
 }
 
@@ -19,7 +26,8 @@ int userInput(int min, int max)
 	do
 	{
 		printf("\x1b[1A"
-			   "\x1b[50D" CLEARLINE "Option: ");
+			   "\x1b[50D" CLEARLINE "Enter Option: ");
+
 		gets(answer);
 		value = atoi(answer);
 		if (value > max || value < min)
@@ -39,20 +47,16 @@ int mainMenu()
 		   "" HIGHLIGHT BOLD "    | |     |  _  / | |  | | \\___ \\ \\___ \\   \\ \\/  \\/ / | |  | ||  _  / | |  | |    " RESET "\n"
 		   "  " HIGHLIGHT BOLD "  | |____ | | \\ \\ | |__| | ____) |____) |   \\  /\\  /  | |__| || | \\ \\ | |__| |  " RESET "\n"
 		   "    " HIGHLIGHT BOLD " \\_____||_|  \\_\\ \\____/ |_____/|_____/     \\/  \\/    \\____/ |_|  \\_\\|_____/ " RESET "\n");
+	
+	
 	printf(BOLD "\n\t1. New Game\n\n\t2. Quit\n\n" RESET);
-	printLine(40);
-	if (userInput(1, 2) == 1)
-	{
 
-		return 1:
-	}
-	else
-	{
-		return 0;
-	}
+	printLine(40);
+
+	return (userInput(1, 2));
 }
 
-void pauseMenu()
+int pauseMenu()
 {
 	printf(CLRSCREEN BOLD "\t\tGame Paused\n" RESET);
 	printLine(45);
@@ -64,8 +68,8 @@ void pauseMenu()
 		return 0;
 		break;
 	case 1:
-		resumeTimer();
-		game();
+		resumeTimer(startTime);
+		//game();
 		return 0;
 		break;
 	case 2:
@@ -101,9 +105,10 @@ void pauseMenu()
 		return 0;
 		break;
 	}
+	return 1;
 }
 
-void endMenu()
+int endMenu()
 {
 	printLine(60);
 	printf("\n1. New Game\n2. Return to Main Menu\n3. Quit\n");
@@ -113,8 +118,8 @@ void endMenu()
 	default:
 		break;
 	case 1:
-		newPuzzle();
-		game();
+		//newPuzzle();
+		//game();
 		break;
 	case 2:
 		mainMenu();

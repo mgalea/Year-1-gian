@@ -1,74 +1,32 @@
+/**
+ * @file main.c
+ * @author Gianluca Galea (you@domain.com)
+ * @brief Year 1 First Semester Assignment
+ * @version 0.1
+ * @date 2022-12-24
+ *
+ * @copyright Copyright (c) 2022
+ *
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <time.h>
 
-#include "globals.h"
-#include "definitions.h"
+#include "terminal_defs.h"
 #include "menu.h"
-#include "puzzle_generator.h"
-#include "game_logic.h"
-
-char puzzle[ROWS][COLUMNS];
-
-char dictionary[][10];
-
-time_t startTime;
-
-int game() {
-
-    refresh();
-
-    //remainingWords = 0; //used for testing post-game
-    while (remainingWords) {
-        setCursorPos(ansField);
-        printf(CLEARFIELD); // erase previous answer
-        switch (acceptAnswer())
-        {
-        case 1:
-            searchBoard();
-            break;
-
-        case -1:
-            return 0;
-            break;
-            
-        default:
-            break;
-        }
-
-    }
-    win();
-
-    return 1;
-}
-
-void startTimer() {
-    time(&startTime);
-}
-
-void pauseTimer() {
-    timeToComplete += difftime(time(NULL), startTime);
-}
-
-void resumeTimer() {
-    time(&startTime);
-}
-
-void endTimer() {
-    time(&startTime);
-}
+#include "puzzle.h"
 
 int main(void)
 {
-    while(mainMenu()){
+    while (mainMenu() == 1)
+    {
+		printf("\x1b[1A"
+			   "\x1b[50D" CLEARLINE "Enter Option: ");
+        newPuzzle(); // generate the puzzle
 
-        newPuzzle(ROWS, COLUMNS, WORDSTOCHOOSE);        //generate the puzzle
-
-        startTimer();                                   //start the game timer
-
-		//game();                                       //lets watch the game...
-
+        // game();                                       //lets watch the game...
     };
 
     return 0;

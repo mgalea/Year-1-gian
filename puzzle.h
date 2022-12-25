@@ -1,8 +1,8 @@
 #ifndef PUZZLE_GEN_H
 #define PUZZLE_GEN_H
 
-void newPuzzle(int, int, int);
-
+void newPuzzle();
+void displayPuzzle();
 int *orientationToOffsets(int orientation);
 int getValidArea(int *maxColumn, int *maxRow, int orientation, int wordLen);
 int collisionTest(char word[10], int column, int row, int orientation);

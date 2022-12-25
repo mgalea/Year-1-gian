@@ -1,5 +1,9 @@
 {
     "files.associations": {
-        "string.h": "c"
-    }
+        "string.h": "c",
+        "terminal_defs.h": "c",
+        "time.h": "c",
+        "stdlib.h": "c"
+    },
+    "cmake.configureOnOpen": true
 }

@@ -1,0 +1,15 @@
+# ninja log v5
+8	135	6936705040558627	CMakeFiles/timer.dir/timer.c.obj	e6c4f2ddbfde4b29
+0	149	6936705040658618	CMakeFiles/menu.dir/menu.c.obj	9175045ef5aac982
+150	335	6936705042548614	libmenu.a	a1c08ff966a989fd
+2	95	6936705443303830	CMakeFiles/wordsearch.dir/main.c.obj	3b34b4092df1716d
+3	104	6936705912986984	CMakeFiles/puzzle.dir/puzzle.c.obj	b78e03bf7b1337be
+136	344	6936705042648622	libtimer.a	a5184c47c4491f8f
+105	194	6936705913901732	libpuzzle.a	ab8a253cc6c1dc38
+157	632	6936955002615234	CMakeFiles/timer.dir/timer.c.obj	99c117bd9659fb3f
+6	634	6936955002615234	CMakeFiles/menu.dir/menu.c.obj	2defa01371771507
+165	636	6936955002625242	CMakeFiles/puzzle.dir/puzzle.c.obj	170bf801a3b7ed4b
+23	144	6936955207473601	CMakeFiles/wordsearch.dir/main.c.obj	f23dc0f38fc8717a
+16	206	6936955208113612	libpuzzle.a	ab8a253cc6c1dc38
+10	207	6936955208103603	libtimer.a	a5184c47c4491f8f
+2	208	6936955208123602	libmenu.a	a1c08ff966a989fd

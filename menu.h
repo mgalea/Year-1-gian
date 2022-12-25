@@ -2,8 +2,8 @@
 #define MENU_H
 
 int mainMenu();
-void pauseMenu();
-void endMenu();
+int pauseMenu();
+int endMenu();
 void printLine(int width);
 int userInput(int min, int max);
 

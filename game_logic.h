@@ -3,9 +3,9 @@
 
 void refresh();
 int isValidInput(char input[11]);
-int  acceptAnswer();
+int acceptAnswer();
 int cardinalDirection();
 void searchBoard();
 void win();
-
+int game();
 #endif

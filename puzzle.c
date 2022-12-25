@@ -1,27 +1,37 @@
-#include "definitions.h"
-#include "puzzle_generator.h"
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <time.h>
+
+#include "globals.h"
+#include "terminal_defs.h"
+#include "utility.h"
+#include "puzzle.h"
 
 char puzzle[ROWS][COLUMNS];
-
-
-void logWord(char *array, char word[10]);
 
 int found;
 int remainingWords;
 
-static void createBlankPuzzle(int rows, int columns);
+int ansField[2] = {19, ROWS + 8};
+int logField[2] = {1, ROWS + 11};
+int wordBankField[2] = {1, ROWS + 4};
 
+static void createBlankPuzzle(int, int, int);
+static void logWord(char *array, char word[10]);
 
-void newPuzzle(int rows, int columns, int wordBankSize )
-{ 
-    createBlankPuzzle(rows, columns);
-    fillPuzzleWithWords(wordBankSize);
-    fillRandom();
-    remainingWords = wordBankSize;
-    found = 0;
+void newPuzzle()
+{
+        found = 0;
+    createBlankPuzzle(ROWS, COLUMNS, WORDSTOCHOOSE);
+
+    // fillPuzzleWithWords(wordBankSize);
+    // fillRandom();
+    remainingWords = WORDSTOCHOOSE - found;
+
 }
 
-static void createBlankPuzzle(int rows, int columns)
+static void createBlankPuzzle(int rows, int columns, int wordBankSize)
 {
     int i, j;
 
@@ -36,19 +46,20 @@ static void createBlankPuzzle(int rows, int columns)
 
 void displayPuzzle()
 {
-    int i, j, rowNum = 0;
+    int j, rowNum = 0;
     int highlight;
     char letter;
 
     // First display column names
     printf(CLRSCREEN CURSORHOME HIGHLIGHT "     ");
-    for (i = 0; i < COLUMNS; i++)
+    for (char i = 'A'; i < COLUMNS; i++)
     {
-        printf("%c ", 'A' + i);
+        printf("%c ", i);
     }
+
     printf(RESET "\n" HIGHLIGHT "  \n" RESET);
 
-    for (i = 0; i < ROWS; i++)
+    for (int i = 0; i < ROWS; i++)
     {
         printf(HIGHLIGHT "%2d" RESET "   ", rowNum + 1);
         rowNum++;
@@ -63,6 +74,7 @@ void displayPuzzle()
     }
 }
 
+/**
 // outputs booleans for row, column offset for a given orientaion
 
 int *orientationToOffsets(int orientation)
@@ -232,3 +244,4 @@ void shiftArray(char *array, int *arrLen, int index)
     *arrLen -= 1;
 }
 
+**/
