@@ -1,6 +1,3 @@
-C:/Year-1-gian/build/CMakeFiles/menu.dir
-C:/Year-1-gian/build/CMakeFiles/timer.dir
-C:/Year-1-gian/build/CMakeFiles/puzzle.dir
 C:/Year-1-gian/build/CMakeFiles/wordsearch.dir
 C:/Year-1-gian/build/CMakeFiles/edit_cache.dir
 C:/Year-1-gian/build/CMakeFiles/rebuild_cache.dir

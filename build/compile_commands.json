@@ -1,22 +1,27 @@
 [
 {
   "directory": "C:/Year-1-gian/build",
-  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\menu.dir\\menu.c.obj -c C:\\Year-1-gian\\menu.c",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\wordsearch.dir\\main.c.obj -c C:\\Year-1-gian\\main.c",
+  "file": "C:\\Year-1-gian\\main.c"
+},
+{
+  "directory": "C:/Year-1-gian/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\wordsearch.dir\\menu.c.obj -c C:\\Year-1-gian\\menu.c",
   "file": "C:\\Year-1-gian\\menu.c"
 },
 {
   "directory": "C:/Year-1-gian/build",
-  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\timer.dir\\timer.c.obj -c C:\\Year-1-gian\\timer.c",
-  "file": "C:\\Year-1-gian\\timer.c"
-},
-{
-  "directory": "C:/Year-1-gian/build",
-  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\puzzle.dir\\puzzle.c.obj -c C:\\Year-1-gian\\puzzle.c",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\wordsearch.dir\\puzzle.c.obj -c C:\\Year-1-gian\\puzzle.c",
   "file": "C:\\Year-1-gian\\puzzle.c"
 },
 {
   "directory": "C:/Year-1-gian/build",
-  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\wordsearch.dir\\main.c.obj -c C:\\Year-1-gian\\main.c",
-  "file": "C:\\Year-1-gian\\main.c"
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\wordsearch.dir\\timer.c.obj -c C:\\Year-1-gian\\timer.c",
+  "file": "C:\\Year-1-gian\\timer.c"
+},
+{
+  "directory": "C:/Year-1-gian/build",
+  "command": "C:\\msys64\\mingw64\\bin\\gcc.exe -g -o CMakeFiles\\wordsearch.dir\\utility.c.obj -c C:\\Year-1-gian\\utility.c",
+  "file": "C:\\Year-1-gian\\utility.c"
 }
 ]

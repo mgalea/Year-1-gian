@@ -12,11 +12,12 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-#include <time.h>
+
 
 #include "terminal_defs.h"
 #include "menu.h"
 #include "puzzle.h"
+
 
 int main(void)
 {

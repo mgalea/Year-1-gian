@@ -3,15 +3,9 @@ project(wordsearch VERSION 0.1.0)
 
 set(CFLAGS Wall)
 
-add_library(menu menu.c  menu.h )
-add_library(timer timer.c  timer.h )
-add_library(puzzle puzzle.c  puzzle.h )
+file(GLOB worldsearch_SRC CONFIGURE_DEPENDS "*.h" "*.c")
 
-add_executable(wordsearch main.c)
-
-target_link_libraries(wordsearch PRIVATE menu)
-target_link_libraries(wordsearch PRIVATE timer)
-target_link_libraries(wordsearch PRIVATE puzzle)
+add_executable(wordsearch ${worldsearch_SRC})
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
